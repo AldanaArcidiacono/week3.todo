@@ -1,6 +1,6 @@
-import { Footer } from './componentes/footer.js';
-import { Header } from './componentes/header';
-import { Main } from './componentes/main.js';
+import { Footer } from './components/footer.js';
+import { Header } from './components/header';
+import { Main } from './components/main.js';
 
 console.log('Loaded index');
 

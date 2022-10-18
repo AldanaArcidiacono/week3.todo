@@ -1,0 +1,3 @@
+class ITask {}
+
+class Task {}
