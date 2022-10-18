@@ -1,5 +1,5 @@
 import { Component } from './component.js';
-export class Main extends Component {
+export class TaskList extends Component {
     constructor(selector) {
         super();
         this.selector = selector;
@@ -8,6 +8,6 @@ export class Main extends Component {
         this.renderAdd(this.selector, this.template);
     }
     createTemplate() {
-        return `<main></main>`;
+        return `<section><h2>Tareas</h2></section>`;
     }
 }
