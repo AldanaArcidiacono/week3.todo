@@ -1,21 +1,23 @@
 export class Component {
-    //constructor(public selector: string, public template: string) {}
     render(selector, template) {
         const element = document.querySelector(selector);
         if (element === null)
-            return;
-        element.innerHTML = template; // Inner = a template, lo reemplaza
-    }
-    renderOuter(selector, template) {
-        const element = document.querySelector(selector);
-        if (element === null)
-            return;
-        element.outerHTML = template;
+            return false;
+        element.innerHTML = template;
+        return true;
     }
     renderAdd(selector, template) {
         const element = document.querySelector(selector);
         if (element === null)
-            return;
-        element.innerHTML += template; // Añade lo que haga falta
+            return false;
+        element.innerHTML += template;
+        return true;
+    }
+    renderOuter(selector, template) {
+        const element = document.querySelector(selector);
+        if (element === null)
+            return false;
+        element.outerHTML = template;
+        return true;
     }
 }
