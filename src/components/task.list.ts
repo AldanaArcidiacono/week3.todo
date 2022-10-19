@@ -1,14 +1,23 @@
 import { TASKS } from '../models/data.js';
 import { Task } from '../models/task.js';
+import { Store } from '../services/storage.js';
 import { AddTask } from './add.task.js';
 import { Component } from './component.js';
 import { ItemTask } from './item.task.js';
 
 export class TaskList extends Component {
     template!: string;
-    tasks = [...TASKS];
+    tasks: Array<Task>;
+    storeService: Store<Task>;
     constructor(public selector: string) {
         super();
+        this.storeService = new Store<Task>();
+        if (this.storeService.getStore().length === 0) {
+            this.tasks = [...TASKS];
+            this.storeService.setStore(this.tasks);
+        } else {
+            this.tasks = this.storeService.getStore();
+        }
         this.manageComponent();
     }
     manageComponent() {
@@ -43,17 +52,19 @@ export class TaskList extends Component {
             document.querySelector('#resp') as HTMLInputElement
         ).value;
         this.tasks.push(new Task(title, responsible));
+        this.storeService.setStore(this.tasks);
         this.manageComponent();
     }
 
     handlerEraser(deletedId: number) {
         this.tasks = this.tasks.filter((item) => item.id !== deletedId);
+        this.storeService.setStore(this.tasks);
         this.manageComponent();
     }
 
     handlerComplete(changeId: number) {
         const i = this.tasks.findIndex((item) => item.id === changeId);
         this.tasks[i].isComplete = !this.tasks[i].isComplete;
-        console.log(this.tasks);
+        this.storeService.setStore(this.tasks);
     }
 }
