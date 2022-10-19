@@ -23,3 +23,20 @@ main {
     margin: 1rem;
     padding: 1rem;
 }
+
+ul {
+    list-style: none;
+
+}
+
+li {
+    border: 1px gainsboro solid;
+    padding: 1rem;
+    margin: 0.5rem;
+    display: flex;
+    justify-content: space-evenly;
+}
+
+.button {
+    cursor: pointer;
+}

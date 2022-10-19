@@ -23,8 +23,12 @@ export class TaskList extends Component {
                 <slot id="add-task"></slot>
                 <ul>`;
         this.tasks.forEach((item: Task) => {
-            template += new ItemTask('', item, this.handlerEraser.bind(this))
-                .template;
+            template += new ItemTask(
+                '',
+                item,
+                this.handlerEraser.bind(this),
+                this.handlerComplete.bind(this)
+            ).template;
         });
         template += `</ul>
             </section>`;
@@ -45,5 +49,11 @@ export class TaskList extends Component {
     handlerEraser(deletedId: number) {
         this.tasks = this.tasks.filter((item) => item.id !== deletedId);
         this.manageComponent();
+    }
+
+    handlerComplete(changeId: number) {
+        const i = this.tasks.findIndex((item) => item.id === changeId);
+        this.tasks[i].isComplete = !this.tasks[i].isComplete;
+        console.log(this.tasks);
     }
 }
