@@ -1,5 +1,7 @@
 export class Component {
     render(selector, template) {
+        if (!selector)
+            return false;
         const element = document.querySelector(selector);
         if (element === null)
             return false;
@@ -7,6 +9,8 @@ export class Component {
         return true;
     }
     renderAdd(selector, template) {
+        if (!selector)
+            return false;
         const element = document.querySelector(selector);
         if (element === null)
             return false;
@@ -14,6 +18,8 @@ export class Component {
         return true;
     }
     renderOuter(selector, template) {
+        if (!selector)
+            return false;
         const element = document.querySelector(selector);
         if (element === null)
             return false;

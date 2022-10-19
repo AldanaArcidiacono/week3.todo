@@ -2,10 +2,19 @@ import { Component } from './component.js';
 
 export class AddTask extends Component {
     template: string;
-    constructor(public selector: string) {
+    constructor(public selector: string, public handle: (ev: Event) => void) {
         super();
         this.template = this.createTemplate();
         this.renderOuter(this.selector, this.template);
+        setTimeout(() => {
+            document
+                .querySelector('form')
+                ?.addEventListener('submit', (ev: Event) => {
+                    ev.preventDefault();
+                    console.log('Tengo que añadir');
+                    handle(ev);
+                });
+        }, 100);
     }
     createTemplate() {
         return `
