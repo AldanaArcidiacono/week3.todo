@@ -12,7 +12,7 @@ export class AddTask extends Component {
                 .querySelector('form')) === null || _a === void 0 ? void 0 : _a.addEventListener('submit', (ev) => {
                 ev.preventDefault();
                 console.log('Tengo que añadir');
-                handle(ev);
+                handle();
             });
         }, 100);
     }

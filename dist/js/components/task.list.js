@@ -35,8 +35,7 @@ export class TaskList extends Component {
             </section>`;
         return template;
     }
-    handleAdd(ev) {
-        //ev.preventDefault();
+    handleAdd() {
         const title = document.querySelector('#title')
             .value;
         const responsible = document.querySelector('#resp').value;

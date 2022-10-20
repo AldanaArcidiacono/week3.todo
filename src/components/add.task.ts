@@ -2,7 +2,7 @@ import { Component } from './component.js';
 
 export class AddTask extends Component {
     template: string;
-    constructor(public selector: string, public handle: (ev: Event) => void) {
+    constructor(public selector: string, public handle: () => void) {
         super();
         this.template = this.createTemplate();
         this.renderOuter(this.selector, this.template);
@@ -12,7 +12,7 @@ export class AddTask extends Component {
                 ?.addEventListener('submit', (ev: Event) => {
                     ev.preventDefault();
                     console.log('Tengo que añadir');
-                    handle(ev);
+                    handle();
                 });
         }, 100);
     }

@@ -44,8 +44,7 @@ export class TaskList extends Component {
         return template;
     }
 
-    handleAdd(ev: Event) {
-        //ev.preventDefault();
+    handleAdd() {
         const title = (document.querySelector('#title') as HTMLInputElement)
             .value;
         const responsible = (
