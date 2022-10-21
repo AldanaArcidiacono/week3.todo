@@ -1,6 +1,7 @@
 import { TASKS } from '../models/data.js';
 import { Task } from '../models/task.js';
 import { Store } from '../services/storage.js';
+import { TaskApi } from '../services/task.api.js';
 import { AddTask } from './add.task.js';
 import { Component } from './component.js';
 import { ItemTask } from './item.task.js';
@@ -9,17 +10,33 @@ export class TaskList extends Component {
     template!: string;
     tasks: Array<Task>;
     storeService: Store<Task>;
+    api: TaskApi;
     constructor(public selector: string) {
         super();
+        this.api = new TaskApi();
         this.storeService = new Store<Task>();
-        if (this.storeService.getStore().length === 0) {
-            this.tasks = [...TASKS];
-            this.storeService.setStore(this.tasks);
-        } else {
-            this.tasks = this.storeService.getStore();
-        }
+        this.tasks = [];
+        // if (this.storeService.getStore().length === 0) {
+        //     this.tasks = [...TASKS];
+        //     this.storeService.setStore(this.tasks);
+        // } else {
+        //     this.tasks = this.storeService.getStore();
+        // }
+
+        // SIN ASYNC AWAIT
+        // this.api.getTask().then((data) => {
+        //     this.tasks = data;
+        //     this.manageComponent();
+        // });
+        this.startTasks();
+    }
+
+    // CON ASYNC AWAIT
+    async startTasks() {
+        this.tasks = await this.api.getTask();
         this.manageComponent();
     }
+
     manageComponent() {
         this.template = this.createTemplate();
         this.render(this.selector, this.template);

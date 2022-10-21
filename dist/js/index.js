@@ -4,7 +4,10 @@ import { Main } from './components/main.js';
 import { TaskList } from './components/task.list.js';
 import { TASKS } from './models/data.js';
 console.log(TASKS);
-new Header('body');
-new Main('body');
-new TaskList('main');
-new Footer('body');
+//IIFE
+(() => {
+    new Header('body');
+    new Main('body');
+    new TaskList('main');
+    new Footer('body');
+})();
